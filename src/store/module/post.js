@@ -1,0 +1,53 @@
+import postService from '@/service/postService';
+
+const postModule = {
+
+  actions: {
+    post(context, {
+      userTelephone, title, content, partition,
+    }) {
+      return new Promise((resolve, reject) => {
+        postService.post({
+          userTelephone, title, content, partition,
+        }).then((res) => {
+          resolve(res);
+        }).catch((err) => {
+          reject(err);
+        });
+      });
+    },
+
+    browse(context, { userTelephone, partition }) {
+      return new Promise((resolve, reject) => {
+        postService.browse({ userTelephone, partition }).then((res) => {
+          resolve(res);
+        }).catch((err) => {
+          reject(err);
+        });
+      });
+    },
+
+    like(context, { userTelephone, postID, isLiked }) {
+      return new Promise((resolve, reject) => {
+        postService.like({ userTelephone, postID, isLiked }).then((res) => {
+          resolve(res);
+        }).catch((err) => {
+          reject(err);
+        });
+      });
+    },
+
+    showDetails(context, { postID }) {
+      return new Promise((resolve, reject) => {
+        postService.like({ postID }).then((res) => {
+          resolve(res);
+        }).catch((err) => {
+          reject(err);
+        });
+      });
+    },
+
+  },
+};
+
+export default postModule;
