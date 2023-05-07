@@ -1,6 +1,6 @@
 <template>
   <div class='postDetails'>
-    <b-card class='mx-auto my-5' style='max-width: 1500px'>
+    <b-card class='mx-auto my-5' style="max-width: 1500px;">
       <div class='author-box mb-2'>{{ post.author }}</div>
       <h2 class='title-font-size mb-3'>{{ post.title }}</h2>
       <p class='content-font-size mb-3'>{{ post.content }}</p>

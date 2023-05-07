@@ -2,7 +2,7 @@
   <div class="post-view">
     <b-row class="mt-3">
       <b-col md="4" class="mb-2">
-        <b-form-select v-model="partition">
+        <b-form-select v-model="partition" style="margin-left: 100px;">
           <b-form-select-option value="主页"></b-form-select-option>
           <b-form-select-option value="日常吐槽">日常吐槽</b-form-select-option>
           <b-form-select-option value="学习交流">学习交流</b-form-select-option>
@@ -12,18 +12,14 @@
           <b-form-select-option value="其他">其他</b-form-select-option>
         </b-form-select>
       </b-col>
-      <b-col md="0" class="text-right mb-2">
+      <b-col md="0" class="text-right mb-2" style="margin-left: 100px;">
         <b-button variant="primary" @click="browsePosts">跳转</b-button>
-      </b-col>
-      <b-col md="7" class="text-right mb-2">
-        <b-button variant="primary" @click="$router.replace({ name: 'post' })">发帖</b-button>
       </b-col>
     </b-row>
     <b-row>
       <b-col v-for="post in posts" :key="post.id" cols="12" md="12" lg="12" class="mb-3">
         <b-card class="px-3 py-2 card-shadow"
-        @click="$router.push({ name: 'postDetails', params: { id: post.id } })"
-        style="border: none; background-color: #f8f9fa;">
+        @click="$router.push({ name: 'postDetails', params: { id: post.id } })">
           <b-row class="mt-0">
             <b-col md="4" class="mb-2">
               <div class="author-box" @click.stop>
@@ -127,5 +123,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../style/css/ProfileView.css'
+@import '../../style/css/ProfileView.css';
 </style>

@@ -1,52 +1,49 @@
 <template>
   <div>
-    <b-navbar
-      toggleable="lg"
-      type="dark"
-      variant="info"
-    >
-      <b-container>
-        <b-navbar-brand @click="$router.push({name: 'profile'})">SSE_market</b-navbar-brand>
-
-        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
-        <b-collapse
-          id="nav-collapse"
-          is-nav
-        >
-          <!-- Right aligned nav items -->
-          <b-navbar-nav class="ml-auto">
-            <!-- <b-nav-form>
-          <b-form-input size="sm" class="mr-sm-2" placeholder="Search"></b-form-input>
-          <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
-        </b-nav-form> -->
-
-            <b-nav-item-dropdown
-              right
-              v-if="userInfo && $route.name != 'login'">
-              <template v-slot:button-content>
-                <em>{{userInfo.name }}</em>
-              </template>
-              <!-- click也可以用这样的形式实现页面跳转，name是我们在router中定义的name，跳转到对应vue文件的页面 -->
-              <b-dropdown-item @click="$router.push({name: 'profile'})">
-                Personal homepage</b-dropdown-item>
-              <b-dropdown-item @click="logout">Logout</b-dropdown-item>
-            </b-nav-item-dropdown>
-            <div v-if="!userInfo">
-              <b-nav-item
-                v-if="$route.name != 'login'"
-                @click="$router.replace({name: 'login'})">Login</b-nav-item>
-              <b-nav-item
-                v-if="$route.name != 'register'"
-                @click="$router.replace({name: 'register'})">Register</b-nav-item>
-            </div>
-          </b-navbar-nav>
-
-        </b-collapse>
-      </b-container>
+    <b-navbar type="light" variant="info" fixed="top">
+      <b-navbar-brand>
+        SSE_market
+      </b-navbar-brand>
+      <b-navbar-nav class="ml-auto">
+        <b-form-group class="px-3" horizontal>
+          <b-input-group>
+            <b-form-input placeholder="搜索"></b-form-input>
+            <b-input-group-append>
+              <b-button variant="dark">搜索</b-button>
+            </b-input-group-append>
+          </b-input-group>
+        </b-form-group>
+        <b-nav-item-dropdown right>
+          <template #button-content>
+            <b-icon-person-fill></b-icon-person-fill>
+            {{ userInfo.name }}
+          </template>
+          <b-dropdown-item @click="logout">退出登录</b-dropdown-item>
+        </b-nav-item-dropdown>
+      </b-navbar-nav>
     </b-navbar>
+    <b-row no-gutters style="margin-top: 60px;">
+      <b-col sm="2" class="nav-col" style="position: fixed;height: 100vh;">
+        <b-list-group flush style="margin-top: 60px;">
+          <b-list-group-item to="/" :class="{ active: $route.path === '/' }">
+            主页</b-list-group-item>
+          <b-list-group-item to="/post" :class="{ active: $route.path === '/post' }">
+            发帖</b-list-group-item>
+          <b-list-group-item to="/notifications"
+          :class="{ active: $route.path === '/notifications' }">
+            通知</b-list-group-item>
+          <b-list-group-item to="/feedback" :class="{ active: $route.path === '/feedback' }">
+            反馈</b-list-group-item>
+          <b-list-group-item to="/my-profile" :class="{ active: $route.path === '/my-profile' }">
+            我的</b-list-group-item>
+        </b-list-group>
+      </b-col>
+      <b-col style="margin-left: 160px;">
+      </b-col>
+    </b-row>
   </div>
 </template>
+
 <script>
 
 import { mapState, mapActions } from 'vuex';
@@ -61,5 +58,24 @@ export default {
   methods: mapActions('userModule', ['logout']),
 };
 </script>
-<style lang="scss" scoped>
+
+<style>
+.navbar {
+  height: 80px;
+}
+
+.b-list-group-item {
+  background-color: #FFFFFF ;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+.active {
+  background-color:rgb(17, 167, 226) !important;
+}
+
+.nav-col {
+  border-right: 1px solid rgb(237, 235, 235); /* 设置右侧边框 */
+}
 </style>
