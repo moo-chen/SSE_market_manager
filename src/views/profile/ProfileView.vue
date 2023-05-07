@@ -21,11 +21,12 @@
     </b-row>
     <b-row>
       <b-col v-for="post in posts" :key="post.id" cols="12" md="12" lg="12" class="mb-3">
-        <b-card class="px-3 py-2 card-shadow" @click="showDetails(post)"
+        <b-card class="px-3 py-2 card-shadow"
+        @click="$router.push({ name: 'postDetails', params: { id: post.id } })"
         style="border: none; background-color: #f8f9fa;">
           <b-row class="mt-0">
             <b-col md="4" class="mb-2">
-              <div class="author-box">
+              <div class="author-box" @click.stop>
                 {{ post.author }}
               </div>
             </b-col>
@@ -38,7 +39,7 @@
           <div class="d-flex justify-content-between align-items-center mt-3">
             <div class="text-muted">
               <b-icon :icon="post.isLiked ? 'heart-fill' : 'heart'"
-              @click="like(post)" :class="{ 'text-danger': post.isLiked }"></b-icon>
+              @click.stop="like(post)" :class="{ 'text-danger': post.isLiked }"></b-icon>
               {{ post.like }}
             </div>
             <div class="text-muted"><b-icon icon="chat-dots-fill"></b-icon> {{ post.comment }}</div>
@@ -71,15 +72,14 @@ export default {
     this.browsePosts();
   },
   methods: {
-    ...mapActions('userModule', { userBrowse: 'browse' }),
-    ...mapActions('userModule', { userLike: 'like' }),
-    ...mapActions('userModule', { userShowDetails: 'showDetails' }),
+    ...mapActions('postModule', { postBrowse: 'browse' }),
+    ...mapActions('postModule', { postLike: 'like' }),
     async browsePosts() {
       this.userTelephone = this.userInfo.telephone;
       // 从后端返回一个结构体变量的方法
       try {
         // 向后端发送请求并获取帖子列表
-        const { data } = await this.userBrowse({
+        const { data } = await this.postBrowse({
           userTelephone: this.userTelephone, partition: this.partition,
         });
         // 将获取到的帖子列表数据赋值给 posts 变量
@@ -115,15 +115,9 @@ export default {
       this.postID = post.id;
       this.isLiked = post.isLiked;
       // 请求
-      this.userLike({
+      this.postLike({
         userTelephone: this.userTelephone, postID: this.postID, isLiked: this.isLiked,
       }).then(() => {
-      }).catch((err) => {
-        console.error(err);
-      });
-    },
-    showDetails(post) {
-      this.userShowDetails({ postID: post.id }).then(() => {
       }).catch((err) => {
         console.error(err);
       });
@@ -133,32 +127,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.card-shadow {
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.author-box {
-  background-color: rgb(17, 167, 226);
-  color: white;
-  padding: 0.25rem 0.5rem;
-  width: auto;
-  display: inline-block;
-  border-radius: 0.25rem;
-}
-
-.title-font-size {
-  font-size: 1.2rem;
-  font-weight: bold;
-  font-family: 'Times New Roman';
-}
-
-.content-font-size {
-  font-size: 1rem;
-  line-height: 1.5;
-  font-family: 'Arial';
-}
-
-.text-color {
-  color: #6c757d;
-}
+@import '../../style/css/ProfileView.css'
 </style>

@@ -50,11 +50,11 @@ export default {
     };
   },
   methods: {
-    ...mapActions('userModule', { userPost: 'post' }),
+    ...mapActions('postModule', { Post: 'post' }),
     post() {
       this.posts.userTelephone = this.userInfo.telephone;
       // 请求
-      this.userPost(this.posts)
+      this.Post(this.posts)
         .then(() => {
           this.$bvToast.toast('发帖成功', {
             title: '系统提醒',

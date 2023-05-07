@@ -59,50 +59,6 @@ const userModule = {
       });
     },
 
-    post(context, {
-      userTelephone, title, content, partition,
-    }) {
-      return new Promise((resolve, reject) => {
-        userService.post({
-          userTelephone, title, content, partition,
-        }).then((res) => {
-          resolve(res);
-        }).catch((err) => {
-          reject(err);
-        });
-      });
-    },
-
-    browse(context, { userTelephone, partition }) {
-      return new Promise((resolve, reject) => {
-        userService.browse({ userTelephone, partition }).then((res) => {
-          resolve(res);
-        }).catch((err) => {
-          reject(err);
-        });
-      });
-    },
-
-    like(context, { userTelephone, postID, isLiked }) {
-      return new Promise((resolve, reject) => {
-        userService.like({ userTelephone, postID, isLiked }).then((res) => {
-          resolve(res);
-        }).catch((err) => {
-          reject(err);
-        });
-      });
-    },
-
-    showDetails(context, { postID }) {
-      return new Promise((resolve, reject) => {
-        userService.like({ postID }).then((res) => {
-          resolve(res);
-        }).catch((err) => {
-          reject(err);
-        });
-      });
-    },
-
     logout({ commit }) {
       // 清除token
       commit('SET_TOKEN', '');

@@ -26,11 +26,9 @@ const like = ({ userTelephone, postID, isLiked }) => {
 };
 
 // 获取帖子详情
-const showDetails = ({ postId }) => {
-  return request.post('auth/showDetails', { postId });
+const showDetails = ({ userTelephone, postID }) => {
+  return request.post('auth/showDetails', { userTelephone, postID });
 };
-
-
 
 export default {
   post,

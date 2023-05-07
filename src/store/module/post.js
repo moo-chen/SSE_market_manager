@@ -1,7 +1,7 @@
 import postService from '@/service/postService';
 
 const postModule = {
-
+  namespaced: true,
   actions: {
     post(context, {
       userTelephone, title, content, partition,
@@ -37,9 +37,9 @@ const postModule = {
       });
     },
 
-    showDetails(context, { postID }) {
+    showDetails(context, { userTelephone, postID }) {
       return new Promise((resolve, reject) => {
-        postService.like({ postID }).then((res) => {
+        postService.showDetails({ userTelephone, postID }).then((res) => {
           resolve(res);
         }).catch((err) => {
           reject(err);
