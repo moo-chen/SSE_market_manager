@@ -1,5 +1,5 @@
 <template>
-  <div class='postDetails'>
+  <div class='postDetails' style="margin-left:200px">
     <b-card class='mx-auto my-5' style="max-width: 1500px;">
       <div class='author-box mb-2'>{{ post.author }}</div>
       <h2 class='title-font-size mb-3'>{{ post.title }}</h2>
@@ -42,6 +42,7 @@ export default {
     };
   },
   created() {
+    this.partition = this.$route.params.partition;
     if (this.$route.params.id) {
       this.post.postID = this.$route.params.id;
       // 将postID保存在本地缓存中

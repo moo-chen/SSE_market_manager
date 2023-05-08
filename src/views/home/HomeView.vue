@@ -1,25 +1,13 @@
 <template>
   <div class="post-view">
-    <b-row class="mt-3">
-      <b-col md="4" class="mb-2">
-        <b-form-select v-model="partition" style="margin-left: 100px;">
-          <b-form-select-option value="主页"></b-form-select-option>
-          <b-form-select-option value="日常吐槽">日常吐槽</b-form-select-option>
-          <b-form-select-option value="学习交流">学习交流</b-form-select-option>
-          <b-form-select-option value="恋爱交友">恋爱交友</b-form-select-option>
-          <b-form-select-option value="二手闲置">二手闲置</b-form-select-option>
-          <b-form-select-option value="打听求助">打听求助</b-form-select-option>
-          <b-form-select-option value="其他">其他</b-form-select-option>
-        </b-form-select>
-      </b-col>
-      <b-col md="0" class="text-right mb-2" style="margin-left: 100px;">
-        <b-button variant="primary" @click="browsePosts">跳转</b-button>
-      </b-col>
-    </b-row>
+    <b-button variant="primary" v-if="this.partition != '主页'"
+      @click="returnHome" style="margin-left: 60px;">
+      <b-icon-reply class="mr-2"></b-icon-reply>回到主页
+    </b-button>
     <b-row>
       <b-col v-for="post in posts" :key="post.id" cols="12" md="12" lg="12" class="mb-3">
         <b-card class="px-3 py-2 card-shadow"
-        @click="$router.push({ name: 'postDetails', params: { id: post.id } })">
+        @click="$router.push({ name: 'postDetails', params: { id: post.id }})">
           <b-row class="mt-0">
             <b-col md="4" class="mb-2">
               <div class="author-box" @click.stop>
@@ -64,12 +52,21 @@ export default {
     };
   },
   created() {
+    if (this.$route.params.partitions && this.$route.params.partitions !== '主页') {
+      this.partition = this.$route.params.partitions;
+    } else {
+      this.partition = '主页';
+    }
     // 在页面创建时默认加载主页帖子列表
     this.browsePosts();
   },
   methods: {
     ...mapActions('postModule', { postBrowse: 'browse' }),
     ...mapActions('postModule', { postLike: 'like' }),
+    returnHome() {
+      this.partition = '主页';
+      this.browsePosts();
+    },
     async browsePosts() {
       this.userTelephone = this.userInfo.telephone;
       // 从后端返回一个结构体变量的方法
@@ -123,5 +120,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../style/css/ProfileView.css';
+@import '../../style/css/HomeView.css';
 </style>

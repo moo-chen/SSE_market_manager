@@ -1,0 +1,28 @@
+.navbar {
+    height: 80px;
+    background-color: rgb(17, 167, 226) !important;
+}
+
+.navbar-brand {
+    color: #fff !important;
+    font-size: 30px !important;
+}
+
+.navbar-nav .nav-link {
+    color: #fff !important;
+}
+
+.b-list-group-item {
+    background-color: #FFFFFF;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.active {
+    background-color: rgb(17, 167, 226) !important;
+}
+
+.nav-col {
+    border-right: 1px solid rgb(237, 235, 235);
+}

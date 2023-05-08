@@ -93,7 +93,7 @@ export default {
           solid: true,
         });
         setTimeout(() => {
-          this.$router.replace({ name: 'profile' });
+          this.$router.replace({ name: 'home' });
         }, 1000);
       }).catch((err) => {
         this.$bvToast.toast(err.response.data.msg, {

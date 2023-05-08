@@ -1,6 +1,6 @@
 <template>
   <div class='post'>
-    <b-row class='mt-4'>
+    <b-row class='mt-4' style="margin-left:200px;">
       <b-col md='8' offset-md='2' lg='10' offset-lg='1'>
         <b-card style="max-width: 1200px;max-height: 800px;">
           <b-form-group label='标题'>
