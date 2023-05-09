@@ -1,5 +1,5 @@
 <template>
-  <div class="post-view">
+  <div class="home-view">
     <b-button variant="primary" v-if="this.partition != '主页'" class="back_button"
       @click="goback" style="margin-left: 60px;">
       <b-icon-reply class="mr-2"></b-icon-reply>返回

@@ -49,7 +49,6 @@ export default {
     };
   },
   created() {
-    this.partition = this.$route.params.partition;
     if (this.$route.params.id) {
       this.post.postID = this.$route.params.id;
       // 将postID保存在本地缓存中
@@ -57,6 +56,14 @@ export default {
     } else {
       // 在本地缓存在直接读取postID
       this.post.postID = JSON.parse(localStorage.getItem('PostID'));
+    }
+    if (this.$route.params.partition) {
+      this.partition = this.$route.params.partition;
+      // 将partition保存在本地缓存中
+      localStorage.setItem('Partition', JSON.stringify(this.$route.params.partition));
+    } else {
+      // 在本地缓存在直接读取postID
+      this.partition = JSON.parse(localStorage.getItem('Partition'));
     }
     const userTelephone = this.userInfo.telephone;
     // 根据该id向后端发送请求，获取该帖子的详细信息，并展示在页面上
@@ -78,7 +85,6 @@ export default {
   beforeRouteLeave(to, from, next) {
     // 返回上一页面时清空本地缓存
     localStorage.removeItem('PostID');
-    localStorage.setItem('Partition', JSON.stringify(this.partition));
     next();
   },
   methods: {
