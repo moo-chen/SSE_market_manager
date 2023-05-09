@@ -1,6 +1,13 @@
 .post-view {
+  position: relative;
   margin-top: 60px;
 }
+
+.back_button {
+  position: absolute;
+  z-index: 100;
+}
+
 .card-shadow {
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   border: none;

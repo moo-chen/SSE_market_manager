@@ -1,30 +1,25 @@
 <template>
-  <div class="register">
-    <b-row class="mt-5">
-      <b-col
-        md="8"
-        offset-md="2"
-        lg="6"
-        offset-lg="3"
-      >
-        <b-card title="登录">
+  <div class='register'>
+    <b-row class='mt-5'>
+      <b-col md='8' offset-md='2' lg='6' offset-lg='3'>
+        <b-card title='登录'>
           <b-form>
-            <b-form-group label="手机号">
+            <b-form-group label='手机号'>
               <b-form-input
-                v-model="$v.user.telephone.$model"
-                type="number"
-                placeholder="输入手机号"
+                v-model='$v.user.telephone.$model'
+                type='number'
+                placeholder='输入手机号'
                 :state="validateState('telephone')"
               ></b-form-input>
               <b-form-invalid-feedback :state="validateState('telephone')">
                 手机号不符合要求
               </b-form-invalid-feedback>
             </b-form-group>
-            <b-form-group label="密码">
+            <b-form-group label='密码'>
               <b-form-input
-                v-model="$v.user.password.$model"
-                type="password"
-                placeholder="输入密码"
+                v-model='$v.user.password.$model'
+                type='password'
+                placeholder='输入密码'
                 :state="validateState('password')"
               ></b-form-input>
               <b-form-invalid-feedback :state="validateState('password')">
@@ -32,11 +27,7 @@
               </b-form-invalid-feedback>
             </b-form-group>
             <b-form-group>
-              <b-button
-                @click="login"
-                variant="outline-primary"
-                block
-              >登录</b-button>
+              <b-button @click='login' variant='outline-primary' block>登录</b-button>
             </b-form-group>
           </b-form>
         </b-card>
@@ -86,25 +77,26 @@ export default {
         return;
       }
       // 请求
-      this.userlogin(this.user).then(() => {
-        this.$bvToast.toast('登录成功', {
-          title: '系统提醒',
-          variant: 'primary',
-          solid: true,
+      this.userlogin(this.user)
+        .then(() => {
+          this.$bvToast.toast('登录成功', {
+            title: '系统提醒',
+            variant: 'primary',
+            solid: true,
+          });
+          setTimeout(() => {
+            this.$router.replace({ name: 'home' });
+          }, 1000);
+        })
+        .catch((err) => {
+          this.$bvToast.toast(err.response.data.msg, {
+            title: '数据验证错误',
+            variant: 'danger',
+            solid: true,
+          });
         });
-        setTimeout(() => {
-          this.$router.replace({ name: 'home' });
-        }, 1000);
-      }).catch((err) => {
-        this.$bvToast.toast(err.response.data.msg, {
-          title: '数据验证错误',
-          variant: 'danger',
-          solid: true,
-        });
-      });
     },
   },
 };
 </script>
-<style lang="scss" scoped>
-</style>
+<style lang='scss' scoped></style>

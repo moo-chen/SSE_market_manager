@@ -29,6 +29,7 @@ export default {
   }),
   data() {
     return {
+      partition: '',
       post: {
         postID: '',
         author: '',
@@ -71,6 +72,7 @@ export default {
   beforeRouteLeave(to, from, next) {
     // 返回上一页面时清空本地缓存
     localStorage.removeItem('PostID');
+    localStorage.setItem('Partition', JSON.stringify(this.partition));
     next();
   },
   methods: {

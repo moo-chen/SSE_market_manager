@@ -1,13 +1,14 @@
 <template>
   <div class="post-view">
-    <b-button variant="primary" v-if="this.partition != '主页'"
-      @click="returnHome" style="margin-left: 60px;">
-      <b-icon-reply class="mr-2"></b-icon-reply>回到主页
+    <b-button variant="primary" v-if="this.partition != '主页'" class="back_button"
+      @click="$router.replace({ name : 'partitions' })" style="margin-left: 60px;">
+      <b-icon-reply class="mr-2"></b-icon-reply>返回
     </b-button>
     <b-row>
       <b-col v-for="post in posts" :key="post.id" cols="12" md="12" lg="12" class="mb-3">
         <b-card class="px-3 py-2 card-shadow"
-        @click="$router.push({ name: 'postDetails', params: { id: post.id }})">
+        @click="$router.push({ name: 'postDetails',
+        params: { id: post.id, partition: partition }})">
           <b-row class="mt-0">
             <b-col md="4" class="mb-2">
               <div class="author-box" @click.stop>
@@ -52,7 +53,10 @@ export default {
     };
   },
   created() {
-    if (this.$route.params.partitions && this.$route.params.partitions !== '主页') {
+    if (localStorage.getItem('Partition')) {
+      this.partition = JSON.parse(localStorage.getItem('Partition'));
+      localStorage.removeItem('Partition');
+    } else if (this.$route.params.partitions && this.$route.params.partitions !== '主页') {
       this.partition = this.$route.params.partitions;
     } else {
       this.partition = '主页';
@@ -63,10 +67,6 @@ export default {
   methods: {
     ...mapActions('postModule', { postBrowse: 'browse' }),
     ...mapActions('postModule', { postLike: 'like' }),
-    returnHome() {
-      this.partition = '主页';
-      this.browsePosts();
-    },
     async browsePosts() {
       this.userTelephone = this.userInfo.telephone;
       // 从后端返回一个结构体变量的方法
