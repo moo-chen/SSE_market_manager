@@ -78,6 +78,10 @@
           :class="{ active: $route.path === '/collect' }" style="font-size: 18px;">
             <b-icon-star-fill class="mr-3"></b-icon-star-fill>我的收藏
           </b-list-group-item>
+          <b-list-group-item v-if="showProfiles" to="/history"
+          :class="{ active: $route.path === '/history' }" style="font-size: 18px;">
+            <b-icon-clock-fill class="mr-3"></b-icon-clock-fill>历史记录
+          </b-list-group-item>
           <b-list-group-item to="/set" :class="{ active: $route.path === '/set' }"
             style="font-size: 18px; display: flex; align-items: center;" @click="toggleSettings">
             <b-icon-gear-fill class="mr-3"></b-icon-gear-fill>设置

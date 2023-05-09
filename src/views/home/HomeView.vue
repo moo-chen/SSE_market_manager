@@ -1,7 +1,7 @@
 <template>
   <div class="post-view">
     <b-button variant="primary" v-if="this.partition != '主页'" class="back_button"
-      @click="$router.replace({ name : 'partitions' })" style="margin-left: 60px;">
+      @click="goback" style="margin-left: 60px;">
       <b-icon-reply class="mr-2"></b-icon-reply>返回
     </b-button>
     <b-row>
@@ -67,6 +67,9 @@ export default {
   methods: {
     ...mapActions('postModule', { postBrowse: 'browse' }),
     ...mapActions('postModule', { postLike: 'like' }),
+    goback() {
+      window.history.back();
+    },
     async browsePosts() {
       this.userTelephone = this.userInfo.telephone;
       // 从后端返回一个结构体变量的方法

@@ -1,4 +1,9 @@
 <template>
+  <div style="margin-top: 60px;">
+    <b-button variant="primary" class="back_button"
+      @click="goback" style="margin-left: 60px;">
+      <b-icon-reply class="mr-2"></b-icon-reply>返回
+    </b-button>
   <div class='postDetails' style="margin-left:200px">
     <b-card class='mx-auto my-5' style="max-width: 1500px;">
       <div class='author-box mb-2'>{{ post.author }}</div>
@@ -16,6 +21,7 @@
         <div class='text-muted'><b-icon icon='chat-dots-fill'></b-icon> {{ post.comment }}</div>
       </div>
     </b-card>
+  </div>
   </div>
 </template>
 
@@ -78,6 +84,9 @@ export default {
   methods: {
     ...mapActions('postModule', { postShowDetails: 'showDetails' }),
     ...mapActions('postModule', { postLike: 'like' }),
+    goback() {
+      window.history.back();
+    },
     formatDate(date) {
       // 格式化日期时间
       const d = new Date(date);
