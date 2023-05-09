@@ -55,14 +55,20 @@ export default {
   created() {
     if (localStorage.getItem('Partition')) {
       this.partition = JSON.parse(localStorage.getItem('Partition'));
-      localStorage.removeItem('Partition');
     } else if (this.$route.params.partitions && this.$route.params.partitions !== '主页') {
       this.partition = this.$route.params.partitions;
+      // 将partition保存在本地缓存中
+      localStorage.setItem('Partition', JSON.stringify(this.$route.params.partitions));
     } else {
       this.partition = '主页';
     }
     // 在页面创建时默认加载主页帖子列表
     this.browsePosts();
+  },
+  beforeRouteLeave(to, from, next) {
+    // 返回上一页面时清空本地缓存
+    localStorage.removeItem('Partition');
+    next();
   },
   methods: {
     ...mapActions('postModule', { postBrowse: 'browse' }),
