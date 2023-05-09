@@ -55,7 +55,7 @@ export default {
         {
           imageUrl: require('@/assets/image/else.jpg'),
           title: '其他',
-          description: '自由发挥，无限创意。',
+          description: '畅所欲言，创意无限。',
           linkLabel: '跳转分区',
         },
       ],

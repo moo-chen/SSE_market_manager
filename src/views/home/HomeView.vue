@@ -9,6 +9,20 @@
         <b-card class="px-3 py-2 card-shadow"
         @click="$router.push({ name: 'postDetails',
         params: { id: post.id, partition: partition }})">
+          <div class="text-muted" style="margin-left:820px;" @click.stop>
+            <b-icon icon="three-dots-vertical" @click.stop="toggleMenu(post)"></b-icon></div>
+          <b-list-group v-if="post.showMenu" style="width:100px;height:2rem;margin-left: 850px;
+          margin-top: -20px;font-size: 0.9rem;" @click.stop>
+            <b-list-group-item>
+              <b-icon-star class="mr-2"></b-icon-star>收藏
+            </b-list-group-item>
+            <b-list-group-item>
+              <b-icon-exclamation-triangle class="mr-2"></b-icon-exclamation-triangle>举报
+            </b-list-group-item>
+            <b-list-group-item v-if="post.authorTelephone === userInfo.telephone">
+              <b-icon-trash class="mr-2"></b-icon-trash>删除
+            </b-list-group-item>
+          </b-list-group>
           <b-row class="mt-0">
             <b-col md="4" class="mb-2">
               <div class="author-box" @click.stop>
@@ -88,12 +102,14 @@ export default {
         this.posts = data.map((post) => ({
           id: post.PostID,
           author: post.UserName,
+          authorTelephone: post.UserTelephone,
           title: post.Title,
           content: post.Content,
           like: post.Like,
           comment: post.Comment,
           postTime: post.PostTime,
           isLiked: post.IsLiked,
+          showMenu: false,
         })).sort((a, b) => new Date(b.postTime) - new Date(a.postTime)); // 按时间倒序排序展示
       } catch (error) {
         console.error(error);
@@ -105,6 +121,10 @@ export default {
       return `${d.getFullYear()}年${
         d.getMonth() + 1
       }月${d.getDate()}日 ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}:${String(d.getSeconds()).padStart(2, '0')}`;
+    },
+    toggleMenu(post) {
+      const updatedShowMenu = { ...post, showMenu: !post.showMenu };
+      this.posts.splice(this.posts.indexOf(post), 1, updatedShowMenu);
     },
     like(post) {
       // 切换点赞状态

@@ -39,6 +39,7 @@ export default {
       post: {
         postID: '',
         author: '',
+        authorTelephone: '',
         title: '',
         content: '',
         like: '',
@@ -71,6 +72,7 @@ export default {
       .then((post) => {
         this.post.postID = post.data.PostID;
         this.post.author = post.data.UserName;
+        this.post.authorTelephone = post.data.UserTelephone;
         this.post.title = post.data.Title;
         this.post.content = post.data.Content;
         this.post.like = post.data.Like;
