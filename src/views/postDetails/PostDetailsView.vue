@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-top: 60px;">
+  <div>
     <b-button variant="primary" class="back_button"
       @click="goback" style="margin-left: 60px;">
       <b-icon-reply class="mr-2"></b-icon-reply>返回
@@ -109,7 +109,7 @@ export default {
     ...mapActions('postModule', { postShowDetails: 'showDetails' }),
     ...mapActions('postModule', { postLike: 'like' }),
     goback() {
-      window.history.back();
+      this.$router.replace({ name: 'home', params: { partition: this.partition } });
     },
     toggleMenu() {
       this.post.showMenu = !this.post.showMenu;

@@ -88,7 +88,7 @@ export default {
     ...mapActions('postModule', { postBrowse: 'browse' }),
     ...mapActions('postModule', { postLike: 'like' }),
     goback() {
-      window.history.back();
+      this.$router.replace({ name: 'partitions' });
     },
     async browsePosts() {
       this.userTelephone = this.userInfo.telephone;

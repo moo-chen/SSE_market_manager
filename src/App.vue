@@ -2,7 +2,7 @@
   <div id='app'>
     <navbar />
     <b-container>
-      <router-view />
+      <router-view style="margin-top:60px;"></router-view>
     </b-container>
   </div>
 </template>

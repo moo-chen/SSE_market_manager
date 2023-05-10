@@ -66,7 +66,7 @@ const userModule = {
       // 清除用户信息
       commit('SET_USERINFO', '');
       storageService.set(storageService.USER_INFO, '');
-
+      localStorage.removeItem('Partition');
       window.location.reload();
     },
   },

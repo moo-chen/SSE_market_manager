@@ -1,5 +1,5 @@
 <template>
-  <div class='register'>
+  <div class='register' @keydown.enter="login">
     <b-row class='mt-5'>
       <b-col md='8' offset-md='2' lg='6' offset-lg='3'>
         <b-card title='登录'>
@@ -89,7 +89,7 @@ export default {
       // 请求
       this.userlogin(this.user)
         .then(() => {
-          this.$router.replace({ name: 'home' });
+          this.$router.replace({ name: 'home', params: { partition: '主页' } });
         })
         .catch((err) => {
           this.$bvToast.toast(err.response.data.msg, {
