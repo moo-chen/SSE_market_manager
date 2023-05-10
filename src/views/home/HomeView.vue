@@ -11,12 +11,12 @@
         params: { id: post.id, partition: partition }})">
           <div class="text-muted" style="margin-left:820px;" @click.stop>
             <b-icon icon="three-dots-vertical" @click.stop="toggleMenu(post)"></b-icon></div>
-          <b-list-group v-if="post.showMenu" style="width:100px;height:2rem;margin-left: 850px;
+          <b-list-group v-if="post.showMenu" style="width:100px;height:1.25rem;margin-left: 850px;
           margin-top: -20px;font-size: 0.9rem;" @click.stop>
             <b-list-group-item>
               <b-icon-star class="mr-2"></b-icon-star>收藏
             </b-list-group-item>
-            <b-list-group-item>
+            <b-list-group-item v-if="post.authorTelephone !== userInfo.telephone">
               <b-icon-exclamation-triangle class="mr-2"></b-icon-exclamation-triangle>举报
             </b-list-group-item>
             <b-list-group-item v-if="post.authorTelephone === userInfo.telephone">

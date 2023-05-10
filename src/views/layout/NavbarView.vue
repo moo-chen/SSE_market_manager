@@ -8,7 +8,7 @@
       <b-collapse is-nav id="nav_collapse">
         <b-navbar-nav style="margin-left:100px;">
           <b-navbar-form>
-            <b-input-group>
+            <b-input-group v-if="this.$route.name === 'home'">
               <b-form-input style="width: 600px; border-radius: 5px;"
               placeholder="搜索"></b-form-input>
               <b-input-group-append>
@@ -33,7 +33,7 @@
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
-    <b-row no-gutters style="margin-top: 60px;">
+    <b-row no-gutters style="margin-top: 60px;" v-if="userInfo.name">
       <b-col sm="2" class="nav-col" style="position: fixed;height: 100vh;">
         <b-list-group flush style="margin-top: 60px;">
           <b-list-group-item to="/" :class="{ active: $route.path === '/' }"

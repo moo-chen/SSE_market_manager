@@ -6,6 +6,20 @@
     </b-button>
   <div class='postDetails' style="margin-left:200px">
     <b-card class='mx-auto my-5' style="max-width: 1500px;">
+      <div class="text-muted" style="margin-left:850px;" @click.stop>
+        <b-icon icon="three-dots-vertical" @click.stop="toggleMenu"></b-icon></div>
+      <b-list-group v-if="this.post.showMenu" style="width:100px;height:1.25rem;margin-left: 880px;
+        margin-top: -20px;font-size: 0.9rem;" @click.stop>
+          <b-list-group-item>
+            <b-icon-star class="mr-2"></b-icon-star>收藏
+          </b-list-group-item>
+          <b-list-group-item v-if="this.post.authorTelephone !== userInfo.telephone">
+            <b-icon-exclamation-triangle class="mr-2"></b-icon-exclamation-triangle>举报
+          </b-list-group-item>
+          <b-list-group-item v-if="this.post.authorTelephone === userInfo.telephone">
+            <b-icon-trash class="mr-2"></b-icon-trash>删除
+          </b-list-group-item>
+      </b-list-group>
       <div class='author-box mb-2'>{{ post.author }}</div>
       <h2 class='title-font-size mb-3'>{{ post.title }}</h2>
       <p class='content-font-size mb-3'>{{ post.content }}</p>
@@ -46,6 +60,7 @@ export default {
         comment: '',
         postTime: '',
         isLiked: '',
+        showMenu: '',
       },
     };
   },
@@ -79,6 +94,7 @@ export default {
         this.post.comment = post.data.Comment;
         this.post.postTime = post.data.PostTime;
         this.post.isLiked = post.data.IsLiked;
+        this.post.showMenu = false;
       })
       .catch((err) => {
         console.error(err);
@@ -94,6 +110,9 @@ export default {
     ...mapActions('postModule', { postLike: 'like' }),
     goback() {
       window.history.back();
+    },
+    toggleMenu() {
+      this.post.showMenu = !this.post.showMenu;
     },
     formatDate(date) {
       // 格式化日期时间

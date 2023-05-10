@@ -31,7 +31,7 @@ export default {
         {
           imageUrl: require('@/assets/image/help.jpg'),
           title: '打听求助',
-          description: '疑虑相询，互帮互助。',
+          description: '疑虑相询，忧难互助。',
           linkLabel: '跳转分区',
         },
         {

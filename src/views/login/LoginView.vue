@@ -30,6 +30,16 @@
               <b-button @click='login' variant='outline-primary' block>登录</b-button>
             </b-form-group>
           </b-form>
+          <b-row>
+            <b-col>
+              <button class="register-button" @click="$router.push({ name : 'register'})">
+                没有账号？注册</button>
+            </b-col>
+            <b-col class="text-right">
+              <button class="changePassword-button"
+              @click="$router.push({ name : 'changePassword'})">忘记密码？</button>
+            </b-col>
+          </b-row>
         </b-card>
       </b-col>
     </b-row>
@@ -79,14 +89,7 @@ export default {
       // 请求
       this.userlogin(this.user)
         .then(() => {
-          this.$bvToast.toast('登录成功', {
-            title: '系统提醒',
-            variant: 'primary',
-            solid: true,
-          });
-          setTimeout(() => {
-            this.$router.replace({ name: 'home' });
-          }, 1000);
+          this.$router.replace({ name: 'home' });
         })
         .catch((err) => {
           this.$bvToast.toast(err.response.data.msg, {
@@ -99,4 +102,21 @@ export default {
   },
 };
 </script>
-<style lang='scss' scoped></style>
+<style lang='scss' scoped>
+.register-button {
+  background: none;
+  border: none;
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+  z-index: 100;
+}
+.changePassword-button {
+  background: none;
+  border: none;
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+  z-index: 100;
+}
+</style>
