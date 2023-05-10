@@ -1,5 +1,6 @@
 <template>
-  <div class='register' @keydown.enter="login">
+    <div class="login-view">
+      <div class='login' @keydown.enter="login">
     <b-row class='mt-5'>
       <b-col md='8' offset-md='2' lg='6' offset-lg='3'>
         <b-card title='登录'>
@@ -44,6 +45,7 @@
       </b-col>
     </b-row>
   </div>
+    </div>
 </template>
 <script>
 import { required, minLength } from 'vuelidate/lib/validators';
@@ -103,6 +105,24 @@ export default {
 };
 </script>
 <style lang='scss' scoped>
+.login-view {
+  background-image: url('../../assets/image/background.jpg');
+  background-size: cover;
+  background-position: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin-top: 0px !important;
+  height: 100vh;
+  width: 100vw;
+}
+
+.login {
+  height: 1000px;
+  width: 1200px;
+  margin-top: 200px !important;
+  margin-left: -100px !important;
+}
 .register-button {
   background: none;
   border: none;

@@ -1,6 +1,7 @@
 <!-- <template>中放的是页面的html框架，可用html语言编写，也可调用bootstrap-vue等第三方提供的组件，但需要在main.js中引入  -->
 <template>
-  <div class="register">
+  <div class="register-view">
+    <div class="register">
     <b-row class="mt-5">
       <b-col
         md="8"
@@ -50,6 +51,7 @@
         </b-card>
       </b-col>
     </b-row>
+  </div>
   </div>
 </template>
 
@@ -136,4 +138,22 @@ export default {
 <style lang="scss" scoped>
 // 可以在这里直接写css语句，如果css语句较多也可写成一个css文件放在'style/css'里并用下列语句引入：
 // @import '../../style/css/XXX.css';
+.register-view {
+  background-image: url('../../assets/image/background.jpg');
+  background-size: cover;
+  background-position: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin-top: 0px !important;
+  height: 100vh;
+  width: 100vw;
+}
+
+.register {
+  height: 1000px;
+  width: 1200px;
+  margin-top: 180px !important;
+  margin-left: -100px !important;
+}
 </style>
