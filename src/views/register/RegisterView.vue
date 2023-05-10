@@ -44,7 +44,7 @@
             <b-form-group>
               <!-- 使用click添加事件，这里是定向到下面的register函数。click的另一个用户参见'views/layout/NavbarView.vue'文件 -->
               <b-button @click="register" variant="outline-primary" block>注册</b-button>
-              <b-button @click="returnLogin"
+              <b-button @click="$router.replace({ name : 'login' })"
               variant="outline-primary" block>返回登录</b-button>
             </b-form-group>
           </b-form>
@@ -101,9 +101,6 @@ export default {
       const { $dirty, $error } = this.$v.user[name];
       return $dirty ? !$error : null;
     },
-    returnLogin() {
-      window.history.back();
-    },
     register() {
       // 验证数据
       this.$v.user.$touch();
@@ -154,6 +151,6 @@ export default {
   height: 1000px;
   width: 1200px;
   margin-top: 180px !important;
-  margin-left: -100px !important;
+  margin-left: 250px !important;
 }
 </style>

@@ -121,7 +121,7 @@ export default {
   height: 1000px;
   width: 1200px;
   margin-top: 200px !important;
-  margin-left: -100px !important;
+  margin-left: 250px !important;
 }
 .register-button {
   background: none;
