@@ -17,7 +17,7 @@
             <b-icon-exclamation-triangle class="mr-2"></b-icon-exclamation-triangle>举报
           </b-list-group-item>
           <b-list-group-item v-if="this.post.authorTelephone === userInfo.telephone">
-            <b-icon-trash class="mr-2"></b-icon-trash>删除
+            <b-icon-trash class="mr-2"></b-icon-trash>
           </b-list-group-item>
       </b-list-group>
       <div class='author-box mb-2'>{{ post.author }}</div>
