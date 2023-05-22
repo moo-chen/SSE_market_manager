@@ -2,21 +2,13 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import store from '@/store';
 import userRoutes from './module/user';
-import postRoutes from './module/post';
+import feedbackRoutes from './module/feedback';
 
 Vue.use(VueRouter);
 
 const routes = [
-  {
-    path: '/',
-    name: 'home',
-    meta: {
-      auth: true,
-    },
-    component: () => import('../views/home/HomeView.vue'),
-  },
   ...userRoutes, // 引入userRoutes中的路由
-  ...postRoutes, // 引入postRoutes中的路由
+  ...feedbackRoutes, // 引入feedbackRoutes中的路由
 ];
 
 // VueRouter是一个用于处理路由的插件。可以使用它来定义应用程序的路由映射，并在用户浏览时动态地更新视图，以此构建单页应用程序。

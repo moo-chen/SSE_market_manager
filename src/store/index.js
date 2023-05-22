@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import userModule from './module/user';
-import postModule from './module/post';
+import postModule from './module/feedback';
 
 Vue.use(Vuex);
 

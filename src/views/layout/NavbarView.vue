@@ -2,13 +2,13 @@
   <div>
     <b-navbar fixed="top">
       <b-navbar-brand>
-        <b-icon-shop class="mr-3"></b-icon-shop>SSE_market
+        <b-icon-shop class="mr-3"></b-icon-shop>SSE_market_Manager
       </b-navbar-brand>
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
       <b-collapse is-nav id="nav_collapse">
         <b-navbar-nav style="margin-left:100px;">
           <b-navbar-form>
-            <b-input-group v-if="this.$route.name === 'home'">
+            <b-input-group>
               <b-form-input style="width: 600px; border-radius: 5px;"
               placeholder="搜索"></b-form-input>
               <b-input-group-append>
@@ -33,70 +33,33 @@
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
-    <b-row no-gutters style="margin-top: 60px;" v-if="userInfo.name">
+    <b-row no-gutters style="margin-top: 60px;">
       <b-col sm="2" class="nav-col" style="position: fixed;height: 100vh;">
         <b-list-group flush style="margin-top: 60px;">
-          <b-list-group-item to="/" :class="{ active: $route.path === '/' }"
-          style="font-size: 18px; display: flex; align-items: center;"
-          @click="togglePartitions()">
-            <b-icon-house-fill class="mr-3"></b-icon-house-fill>主页
-            <b-icon-caret-right-fill v-if="!showPartitions" style="margin-left: auto;">
-            </b-icon-caret-right-fill>
-            <b-icon-caret-down-fill v-if="showPartitions" style="margin-left: auto;">
-            </b-icon-caret-down-fill>
+          <b-list-group-item to="/userInfo" :class="{ active: $route.path === 'userInfo' }"
+          style="font-size: 18px; display: flex; align-items: center;">
+            <b-icon-people-fill class="mr-3"></b-icon-people-fill>用户信息
           </b-list-group-item>
-          <b-list-group-item v-if="showPartitions" to="/partitions"
-            :class="{ active: $route.path === '/partitions' }" style="font-size: 18px;">
-            <b-icon-grid1x2-fill class="mr-3"></b-icon-grid1x2-fill>分区选择
-          </b-list-group-item>
-          <b-list-group-item to="/post" :class="{ active: $route.name === 'post' }"
+          <b-list-group-item to="/postInfo" :class="{ active: $route.name === 'postInfo' }"
             style="font-size: 18px;">
-            <b-icon-pencil-fill class="mr-3"></b-icon-pencil-fill>发帖
+            <b-icon-file-text-fill class="mr-3"></b-icon-file-text-fill>帖子信息
           </b-list-group-item>
-          <b-list-group-item to="/notifications"
-            :class="{ active: $route.path === '/notifications' }"
+          <b-list-group-item to="/userFeedback"
+            :class="{ active: $route.path === '/userFeedback' }"
             style="font-size: 18px;">
-            <b-icon-bell-fill class="mr-3"></b-icon-bell-fill>通知
+            <b-icon-envelope-open-fill class="mr-3"></b-icon-envelope-open-fill>用户反馈
           </b-list-group-item>
-            <b-list-group-item to="/feedback" :class="{ active: $route.path === '/feedback' }"
+            <b-list-group-item to="/checkUser" :class="{ active: $route.path === '/checkUser' }"
             style="font-size: 18px;">
-            <b-icon-envelope-fill class="mr-3"></b-icon-envelope-fill>反馈
+            <b-icon-calendar2-check-fill class="mr-3"></b-icon-calendar2-check-fill>审核用户
           </b-list-group-item>
-          <b-list-group-item to="/myPage" :class="{ active: $route.path === '/myPage' }"
-            style="font-size: 18px; display: flex; align-items: center;" @click="toggleProfiles">
-            <b-icon-person-circle class="mr-3"></b-icon-person-circle>我的
-            <b-icon-caret-right-fill v-if="!showProfiles" style="margin-left: auto;">
-            </b-icon-caret-right-fill>
-            <b-icon-caret-down-fill v-if="showProfiles" style="margin-left: auto;">
-            </b-icon-caret-down-fill>
+          <b-list-group-item to="/checkPost" :class="{ active: $route.path === '/checkPost' }"
+            style="font-size: 18px; display: flex; align-items: center;">
+            <b-icon-calendar2-x-fill class="mr-3"></b-icon-calendar2-x-fill>审核帖子
           </b-list-group-item>
-          <b-list-group-item v-if="showProfiles" to="/profile"
-          :class="{ active: $route.path === '/profile' }" style="font-size: 18px;">
-            <b-icon-table class="mr-3"></b-icon-table>个人信息
-          </b-list-group-item>
-          <b-list-group-item v-if="showProfiles" to="/collect"
-          :class="{ active: $route.path === '/collect' }" style="font-size: 18px;">
-            <b-icon-star-fill class="mr-3"></b-icon-star-fill>我的收藏
-          </b-list-group-item>
-          <b-list-group-item v-if="showProfiles" to="/history"
-          :class="{ active: $route.path === '/history' }" style="font-size: 18px;">
-            <b-icon-clock-fill class="mr-3"></b-icon-clock-fill>历史记录
-          </b-list-group-item>
-          <b-list-group-item to="/set" :class="{ active: $route.path === '/set' }"
-            style="font-size: 18px; display: flex; align-items: center;" @click="toggleSettings">
+          <b-list-group-item to="/settings" :class="{ active: $route.path === '/settings' }"
+            style="font-size: 18px; display: flex; align-items: center;">
             <b-icon-gear-fill class="mr-3"></b-icon-gear-fill>设置
-            <b-icon-caret-right-fill v-if="!showSettings" style="margin-left: auto;">
-            </b-icon-caret-right-fill>
-            <b-icon-caret-down-fill v-if="showSettings" style="margin-left: auto;">
-            </b-icon-caret-down-fill>
-          </b-list-group-item>
-          <b-list-group-item v-if="showSettings" to="/changePassword"
-          :class="{ active: $route.path === '/changePassword' }" style="font-size: 18px;">
-            <b-icon-lock-fill class="mr-3"></b-icon-lock-fill>修改密码
-          </b-list-group-item>
-          <b-list-group-item v-if="showSettings" to="/delete"
-          :class="{ active: $route.path === '/delete' }" style="font-size: 18px;">
-            <b-icon-x-circle-fill class="mr-3"></b-icon-x-circle-fill>注销账号
           </b-list-group-item>
         </b-list-group>
       </b-col>
@@ -126,15 +89,6 @@ export default {
   methods: {
     // 使用map将映射'store/module'里的logout函数
     ...mapActions('userModule', ['logout']),
-    toggleSettings() {
-      this.showSettings = !this.showSettings;
-    },
-    toggleProfiles() {
-      this.showProfiles = !this.showProfiles;
-    },
-    togglePartitions() {
-      this.showPartitions = !this.showPartitions;
-    },
   },
 };
 </script>
