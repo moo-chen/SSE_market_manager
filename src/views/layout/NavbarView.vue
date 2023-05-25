@@ -7,18 +7,6 @@
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
       <b-collapse is-nav id="nav_collapse">
         <b-navbar-nav style="margin-left:100px;">
-          <b-navbar-form>
-            <b-input-group>
-              <b-form-input style="width: 600px; border-radius: 5px;"
-              placeholder="搜索"></b-form-input>
-              <b-input-group-append>
-                <b-button style="margin-left:20px; border-radius: 5px;"
-                variant="dark">
-                <b-icon-search class="mr-2"></b-icon-search>搜索
-              </b-button>
-              </b-input-group-append>
-            </b-input-group>
-          </b-navbar-form>
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto">
           <b-nav-item-dropdown right>
