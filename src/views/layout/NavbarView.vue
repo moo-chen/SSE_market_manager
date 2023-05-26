@@ -59,14 +59,7 @@
 
 <script>
 
-import { mapState, mapActions } from 'vuex';
-
 export default {
-  // 获取在浏览器缓存中的包含用户信息的token，userInfo中包含用户的name和telephone
-  // 所以要从前端返回用户信息时，一般采用telephone(因为name不唯一，id又无法从前端直接获取)
-  computed: mapState({
-    userInfo: (state) => state.userModule.userInfo,
-  }),
   data() {
     return {
       showPartitions: false,
@@ -75,8 +68,6 @@ export default {
     };
   },
   methods: {
-    // 使用map将映射'store/module'里的logout函数
-    ...mapActions('userModule', ['logout']),
   },
 };
 </script>
