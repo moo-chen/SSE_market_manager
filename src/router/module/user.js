@@ -11,6 +11,11 @@ const userRoutes = [
     name: 'login',
     component: () => import('@/views/login/LoginView.vue'),
   },
+  {
+    path: '/userInfo',
+    name: 'userInfo',
+    component: () => import('@/views/userInfo/UserInfoView.vue'),
+  },
 ];
 
 export default userRoutes;
