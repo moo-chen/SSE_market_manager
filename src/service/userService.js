@@ -14,8 +14,23 @@ const passUser = ({ name }) => {
   return request.post('auth/passUsers', { name });
 };
 
+const addAdmin = ({ account, password1, password2 }) => {
+  return request.post('auth/addAdmin', { account, password1, password2 });
+};
+
+const deleteAdmin = ({ account }) => {
+  return request.post('auth/deleteAdmin', { account });
+};
+
+const changePassword = ({ account, password1, password2 }) => {
+  return request.post('auth/changePassword', { account, password1, password2 });
+};
+
 export default {
   userInfo,
   deleteUser,
   passUser,
+  addAdmin,
+  deleteAdmin,
+  changePassword,
 };

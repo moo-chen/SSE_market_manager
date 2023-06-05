@@ -45,9 +45,27 @@
             style="font-size: 18px; display: flex; align-items: center;">
             <b-icon-calendar2-x-fill class="mr-3"></b-icon-calendar2-x-fill>审核帖子
           </b-list-group-item>
-          <b-list-group-item to="/settings" :class="{ active: $route.path === '/settings' }"
-            style="font-size: 18px; display: flex; align-items: center;">
+          <b-list-group-item to="/set" :class="{ active: $route.path === '/set' }"
+            style="font-size: 18px; display: flex; align-items: center;" @click="toggleSettings">
             <b-icon-gear-fill class="mr-3"></b-icon-gear-fill>设置
+            <b-icon-caret-right-fill v-if="!showSettings" style="margin-left: auto;">
+            </b-icon-caret-right-fill>
+            <b-icon-caret-down-fill v-if="showSettings" style="margin-left: auto;">
+            </b-icon-caret-down-fill>
+          </b-list-group-item>
+          <b-list-group-item v-if="showSettings" to="/changePassword"
+          :class="{ active: $route.path === '/changePassword' }" style="font-size: 18px;">
+            <b-icon-lock-fill class="mr-3"></b-icon-lock-fill>修改密码
+          </b-list-group-item>
+          <b-list-group-item v-if="showSettings" to="/deleteAdmin"
+          :class="{ active: $route.path === '/deleteAdmin' }" style="font-size: 18px;">
+            <b-icon-x-circle-fill class="mr-3"></b-icon-x-circle-fill>注销管理员
+          </b-list-group-item>
+
+          <b-list-group-item v-if="showSettings" to="/addAdmin"
+          :class="{ active: $route.path === '/addAdmin' }" style="font-size: 18px;">
+            <b-icon-check-circle-fill class="mr-3"></b-icon-check-circle-fill>
+            添加管理员
           </b-list-group-item>
         </b-list-group>
       </b-col>
@@ -68,6 +86,9 @@ export default {
     };
   },
   methods: {
+    toggleSettings() {
+      this.showSettings = !this.showSettings;
+    },
   },
 };
 </script>

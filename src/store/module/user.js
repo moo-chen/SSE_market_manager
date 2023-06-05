@@ -33,6 +33,39 @@ const userModule = {
         });
       });
     },
+
+    addAdmin(context, { account, password1, password2 }) {
+      console.error({ account, password1, password2 });
+      return new Promise((resolve, reject) => {
+        userService.addAdmin({ account, password1, password2 }).then((res) => {
+          resolve(res);
+        }).catch((err) => {
+          reject(err);
+        });
+      });
+    },
+
+    deleteAdmin(context, { account }) {
+      console.error({ account });
+      return new Promise((resolve, reject) => {
+        userService.deleteAdmin({ account }).then((res) => {
+          resolve(res);
+        }).catch((err) => {
+          reject(err);
+        });
+      });
+    },
+
+    changePassword(context, { account, password1, password2 }) {
+      console.error({ account, password1, password2 });
+      return new Promise((resolve, reject) => {
+        userService.changePassword({ account, password1, password2 }).then((res) => {
+          resolve(res);
+        }).catch((err) => {
+          reject(err);
+        });
+      });
+    },
   },
 };
 
