@@ -1,7 +1,7 @@
 <template>
   <div align="left" style="padding-left:100px;">
     <h1>
-      修改密码
+      增加管理员
     </h1>
 
     <b-form-group
