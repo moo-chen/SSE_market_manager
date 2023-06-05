@@ -11,6 +11,26 @@ const userRoutes = [
     name: 'login',
     component: () => import('@/views/login/LoginView.vue'),
   },
+  {
+    path: '/userInfo',
+    name: 'userInfo',
+    component: () => import('@/views/userInfo/UserInfoView.vue'),
+  },
+  {
+    path: '/addAdmin',
+    name: 'addAdmin',
+    component: () => import('@/views/addAdmin/addAdmin.vue'),
+  },
+  {
+    path: '/deleteAdmin',
+    name: 'deleteAdmin',
+    component: () => import('@/views/deleteAdmin/deleteAdmin.vue'),
+  },
+  {
+    path: '/changePassword',
+    name: 'changePassword',
+    component: () => import('@/views/changePassword/changePasswordView.vue'),
+  },
 ];
 
 export default userRoutes;
