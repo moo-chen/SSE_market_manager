@@ -12,7 +12,6 @@
           <b-nav-item-dropdown right>
             <template #button-content>
               <b-icon-person-fill></b-icon-person-fill>
-              {{ userInfo.name }}
             </template>
             <b-dropdown-item @click="logout">
               <b-icon-box-arrow-left class="mr-1"></b-icon-box-arrow-left> 退出登录

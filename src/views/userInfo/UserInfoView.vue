@@ -48,7 +48,6 @@
     <b-button @click="passUser" variant="outline-primary" block>
       通过审核
     </b-button>
-    <div font="14px">you select {{ selected.name }}</div>
     <b-table striped hover :items="items" @row-clicked="onRowClicked"></b-table>
   </div>
 </template>
@@ -76,7 +75,9 @@ export default {
       },
     };
   },
-
+  created() {
+    this.showUser();
+  },
   methods: {
     ...mapActions('userModule', { showUsers: 'showUsers' }),
     ...mapActions('userModule', { deleteUsers: 'deleteUser' }),
@@ -95,11 +96,6 @@ export default {
           this.items[i].index = (i + 1);
         }
         console.error(this.items);
-        this.$bvToast.toast('查询成功', {
-          title: '系统提醒',
-          variant: 'primary',
-          solid: true,
-        });
       }).catch((err) => {
         this.$bvToast.toast(err.response.data.msg, {
           title: '查询时出现错误',
