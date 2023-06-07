@@ -66,6 +66,39 @@ const userModule = {
         });
       });
     },
+
+    noViolation(context, { sueID }) {
+      console.error({ sueID });
+      return new Promise((resolve, reject) => {
+        userService.noViolation({ sueID }).then((res) => {
+          resolve(res);
+        }).catch((err) => {
+          reject(err);
+        });
+      });
+    },
+
+    violation(context, { sueID }) {
+      console.error({ sueID });
+      return new Promise((resolve, reject) => {
+        userService.violation({ sueID }).then((res) => {
+          resolve(res);
+        }).catch((err) => {
+          reject(err);
+        });
+      });
+    },
+
+    getSues() {
+      console.error();
+      return new Promise((resolve, reject) => {
+        userService.getSues().then((res) => {
+          resolve(res);
+        }).catch((err) => {
+          reject(err);
+        });
+      });
+    },
   },
 };
 

@@ -26,6 +26,19 @@ const changePassword = ({ account, password1, password2 }) => {
   return request.post('auth/changePassword', { account, password1, password2 });
 };
 
+const noViolation = ({ sueID }) => {
+  return request.post('auth/noViolation', { sueID });
+};
+
+const violation = ({ sueID }) => {
+  return request.post('auth/violation', { sueID });
+};
+
+const getSues = () => {
+  console.error({ });
+  return request.get('auth/getSues', { });
+};
+
 export default {
   userInfo,
   deleteUser,
@@ -33,4 +46,7 @@ export default {
   addAdmin,
   deleteAdmin,
   changePassword,
+  noViolation,
+  violation,
+  getSues,
 };
