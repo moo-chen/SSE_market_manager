@@ -1,0 +1,99 @@
+<template>
+  <div>
+    <el-table
+        :data="tableData.slice((currentPage - 1) * pageSize, currentPage * pageSize)"
+        highlight-current-row
+        border
+        style="width: 80%; margin-left: 200px">
+      <el-table-column
+          header-align="center"
+          align="center"
+          prop="FeedbackID"
+          label="反馈ID"
+          width="120">
+      </el-table-column>
+      <el-table-column
+          header-align="center"
+          align="center"
+          prop="Ftext"
+          label="反馈内容"
+          width="650">
+      </el-table-column>
+      <el-table-column
+          header-align="center"
+          align="center"
+          label="附件"
+          width="120">
+        <template slot-scope="scope">
+          <el-button v-if="scope.row.Attachment"
+                     @click="handleClick(scope.row)"
+                     type="text" size="small">下载</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+    <el-pagination
+        style="margin-left: 400px"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="currentPage"
+        :page-sizes="[10, 20, 50, 100]"
+        :page-size="pageSize"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="totalItems">
+    </el-pagination>
+  </div>
+</template>
+
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      tableData: [],
+      pageSize: 10,
+      currentPage: 1,
+      totalItems: 0,
+    };
+  },
+
+  created() {
+    this.fetchData();
+  },
+
+  methods: {
+    handleClick(row) {
+      window.open(row.Attachment, '_blank'); // 这里假设你的附件URL是在"Attachment"字段
+    },
+
+    fetchData() {
+      axios.get('http://localhost:8080/api/auth/getAllFeedback')
+        .then((response) => {
+          console.log(response.data); // 打印返回的数据
+          this.tableData = response.data.data.feedbacks;
+          this.totalItems = this.tableData.length;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+
+    handleSizeChange(val) {
+      this.pageSize = val;
+      this.currentPage = 1; // 如果改变每页显示的数量，回到第一页
+    },
+
+    handleCurrentChange(val) {
+      this.currentPage = val;
+    },
+  },
+};
+</script>
+
+<style>
+.el-pagination .number-goto .el-input__inner,
+.el-pagination .el-pager li.active {
+  color: blue !important;
+  border-color: transparent !important;
+}
+</style>

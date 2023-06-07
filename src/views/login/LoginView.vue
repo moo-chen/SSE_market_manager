@@ -1,4 +1,23 @@
 <template>
+  <div class="full-screen-container">
+    <vue-particles
+        class="particles-bg"
+        color="#39AFFD"
+        :particle-opacity="0.7"
+        :particles-number="100"
+        shape-type="star"
+        :particle-size="4"
+        lines-color="#FFFFFF"
+        :lines-width="1"
+        :line-linked="true"
+        :line-opacity="0.4"
+        :lines-distance="150"
+        :move-speed="3"
+        :hover-effect="true"
+        hover-mode="grab"
+        :click-effect="true"
+        click-mode="repulse"
+    />
     <div class="login-view">
       <div class='login' @keydown.enter="login">
     <b-row class='mt-5'>
@@ -46,6 +65,7 @@
     </b-row>
   </div>
     </div>
+  </div>
 </template>
 <script>
 import { required, minLength } from 'vuelidate/lib/validators';
@@ -116,7 +136,20 @@ export default {
   height: 100vh;
   width: 100vw;
 }
-
+.full-screen-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.particles-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
 .login {
   height: 1000px;
   width: 1200px;
