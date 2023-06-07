@@ -1,5 +1,14 @@
 import request from '@/utils/request';
 
+const login = ({ account, password }) => {
+  return request.post('auth/adminLogin', { account, password });
+};
+
+// 获取用户信息(检验token）
+const info = () => {
+  return request.get('auth/admininfo');
+};
+
 const userInfo = ({ name, phone, idPass }) => {
   console.error({ name, phone, idPass });
   return request.post('auth/showUsers', { name, phone, idPass });
@@ -27,6 +36,8 @@ const changePassword = ({ account, password1, password2 }) => {
 };
 
 export default {
+  login,
+  info,
   userInfo,
   deleteUser,
   passUser,

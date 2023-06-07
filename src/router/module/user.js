@@ -14,6 +14,9 @@ const userRoutes = [
   {
     path: '/userInfo',
     name: 'userInfo',
+    meta: {
+      auth: true,
+    },
     component: () => import('@/views/userInfo/UserInfoView.vue'),
   },
   {

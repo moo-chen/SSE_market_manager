@@ -24,15 +24,15 @@
       <b-col md='8' offset-md='2' lg='6' offset-lg='3'>
         <b-card title='登录'>
           <b-form>
-            <b-form-group label='手机号'>
+            <b-form-group label='账号'>
               <b-form-input
-                v-model='$v.user.telephone.$model'
+                v-model='$v.user.account.$model'
                 type='number'
-                placeholder='输入手机号'
-                :state="validateState('telephone')"
+                placeholder='输入账号'
+                :state="validateState('account')"
               ></b-form-input>
-              <b-form-invalid-feedback :state="validateState('telephone')">
-                手机号不符合要求
+              <b-form-invalid-feedback :state="validateState('account')">
+                账号不符合要求
               </b-form-invalid-feedback>
             </b-form-group>
             <b-form-group label='密码'>
@@ -77,16 +77,16 @@ export default {
   data() {
     return {
       user: {
-        telephone: '',
+        account: '',
         password: '',
       },
     };
   },
   validations: {
     user: {
-      telephone: {
+      account: {
         required,
-        telephone: customValidator.telephoneValidator,
+        account: customValidator.telephoneValidator,
       },
       password: {
         required,
@@ -96,7 +96,7 @@ export default {
   },
 
   methods: {
-    ...mapActions('userModule', { userlogin: 'login' }),
+    ...mapActions('userModule', { adminlogin: 'login' }),
     validateState(name) {
       // 这里是es6 解构赋值
       const { $dirty, $error } = this.$v.user[name];
@@ -109,9 +109,9 @@ export default {
         return;
       }
       // 请求
-      this.userlogin(this.user)
+      this.adminlogin(this.user)
         .then(() => {
-          this.$router.replace({ name: 'home', params: { partition: '主页' } });
+          this.$router.replace({ name: 'home' });
         })
         .catch((err) => {
           this.$bvToast.toast(err.response.data.msg, {
