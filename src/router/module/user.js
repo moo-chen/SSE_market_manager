@@ -20,6 +20,11 @@ const userRoutes = [
     component: () => import('@/views/userInfo/UserInfoView.vue'),
   },
   {
+    path: '/checkPost',
+    name: 'checkPost',
+    component: () => import('@/views/checkPost/checkPostView.vue'),
+  },
+  {
     path: '/addAdmin',
     name: 'addAdmin',
     component: () => import('@/views/addAdmin/addAdmin.vue'),
