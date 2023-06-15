@@ -27,7 +27,6 @@
             <b-form-group label='账号'>
               <b-form-input
                 v-model='$v.user.account.$model'
-                type='number'
                 placeholder='输入账号'
                 :state="validateState('account')"
               ></b-form-input>
@@ -70,7 +69,7 @@
 <script>
 import { required, minLength } from 'vuelidate/lib/validators';
 
-import customValidator from '@/helper/validator';
+// import customValidator from '@/helper/validator';
 import { mapActions } from 'vuex';
 
 export default {
@@ -86,7 +85,7 @@ export default {
     user: {
       account: {
         required,
-        account: customValidator.telephoneValidator,
+        // account: customValidator.telephoneValidator,
       },
       password: {
         required,
