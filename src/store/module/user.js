@@ -40,6 +40,15 @@ const userModule = {
         });
       });
     },
+    logout({ commit }) {
+      // 清除token
+      commit('SET_TOKEN', '');
+      storageService.set(storageService.ADMIN_TOKEN, '');
+      // 清除用户信息
+      commit('SET_ADMININFO', '');
+      storageService.set(storageService.ADMIN_INFO, '');
+      window.location.reload();
+    },
 
     showUsers(context, { name, phone, idPass }) {
       return new Promise((resolve, reject) => {

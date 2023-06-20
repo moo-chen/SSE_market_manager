@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-navbar fixed="top">
+    <b-navbar fixed="top" v-if="$route.name != 'login'">
       <b-navbar-brand>
         <b-icon-shop class="mr-3"></b-icon-shop>SSE_market_Manager
       </b-navbar-brand>
@@ -76,6 +76,8 @@
 
 <script>
 
+import { mapActions } from 'vuex';
+
 export default {
   data() {
     return {
@@ -85,6 +87,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions('userModule', ['logout']),
     toggleSettings() {
       this.showSettings = !this.showSettings;
     },
