@@ -11,7 +11,7 @@
         <b-navbar-nav class="ml-auto">
           <b-nav-item-dropdown right>
             <template #button-content>
-              <b-icon-person-fill></b-icon-person-fill>
+              <b-icon-person-fill></b-icon-person-fill>管理员
             </template>
             <b-dropdown-item @click="logout">
               <b-icon-box-arrow-left class="mr-1"></b-icon-box-arrow-left> 退出登录
@@ -26,10 +26,6 @@
           <b-list-group-item to="/userInfo" :class="{ active: $route.path === 'userInfo' }"
           style="font-size: 18px; display: flex; align-items: center;">
             <b-icon-people-fill class="mr-3"></b-icon-people-fill>用户信息
-          </b-list-group-item>
-          <b-list-group-item to="/postInfo" :class="{ active: $route.name === 'postInfo' }"
-            style="font-size: 18px;">
-            <b-icon-file-text-fill class="mr-3"></b-icon-file-text-fill>帖子信息
           </b-list-group-item>
           <b-list-group-item to="/userFeedback"
             :class="{ active: $route.path === '/userFeedback' }"

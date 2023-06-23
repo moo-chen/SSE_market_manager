@@ -7,6 +7,13 @@ import feedbackRoutes from './module/feedback';
 Vue.use(VueRouter);
 
 const routes = [
+  {
+    path: '/',
+    name: 'home',
+    meta: {
+      auth: true,
+    },
+  },
   ...userRoutes, // 引入userRoutes中的路由
   ...feedbackRoutes, // 引入feedbackRoutes中的路由
 ];

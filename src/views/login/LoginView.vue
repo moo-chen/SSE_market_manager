@@ -50,16 +50,6 @@
               <b-button @click='login' variant='outline-primary' block>登录</b-button>
             </b-form-group>
           </b-form>
-          <b-row>
-            <b-col>
-              <button class="register-button" @click="$router.push({ name : 'register'})">
-                没有账号？注册</button>
-            </b-col>
-            <b-col class="text-right">
-              <button class="changePassword-button"
-              @click="$router.push({ name : 'changePassword'})">忘记密码？</button>
-            </b-col>
-          </b-row>
         </b-card>
       </b-col>
     </b-row>
