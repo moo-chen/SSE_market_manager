@@ -48,7 +48,17 @@
     <b-button @click="passUser" variant="outline-primary" block>
       通过审核
     </b-button>
-    <b-table striped hover :items="items" @row-clicked="onRowClicked"></b-table>
+    <b-table striped hover :items="items" @row-clicked="onRowClicked"
+    class="aquaStyle"></b-table>
+    <!-- <table class="table" id="userInfo" @row-clicked="onRowClicked">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Telephone</th>
+        <th scope="col">IdPass</th>
+        <th scope="col">Operation</th>
+      </tr>
+    </table> -->
   </div>
 </template>
 
@@ -68,6 +78,7 @@ export default {
         { value: 1, text: '审核通过' },
         { value: 0, text: '审核未通过' },
       ],
+      fields: ['index', 'name', 'phone', 'idPass'],
       items: [
       ],
       selected: {
@@ -85,7 +96,31 @@ export default {
 
     onRowClicked(item) {
       this.selected = item;
-      // console.error('Row clicked:', item);
+      // 暂时没有想到更好的方法，由于不查询不会有__ob__,这样测试后发现无法正常更改底色，所以比较投机取巧，选择重新去后端取了一次数据
+      this.showUsers(this.check).then((response1) => {
+        console.error(response1.data.data.data);
+        this.items = response1.data.data.data;
+        for (let i = 0; i < this.items.length; i += 1) {
+          if (this.items[i].name === item.name) {
+            this.items[i] = {
+              index: i + 1,
+              name: this.items[i].name,
+              phone: this.items[i].phone,
+              idPass: this.items[i].IDpass,
+              _rowVariant: 'info',
+            };
+          } else {
+            this.items[i] = {
+              index: i + 1,
+              name: this.items[i].name,
+              phone: this.items[i].phone,
+              idPass: this.items[i].IDpass,
+              _rowVariant: 'primary',
+            };
+          }
+        }
+        console.error('pass', this.items);
+      });
     },
 
     showUser() {
@@ -93,20 +128,26 @@ export default {
       this.showUsers(this.check).then((response) => {
         this.items = response.data.data.data;
         for (let i = 0; i < this.items.length; i += 1) {
-          this.items[i].index = (i + 1);
+          this.items[i] = {
+            index: i + 1,
+            name: this.items[i].name,
+            phone: this.items[i].phone,
+            idPass: this.items[i].IDpass,
+            _rowVariant: 'primary',
+          };
         }
         console.error(this.items);
       }).catch((err) => {
         this.$bvToast.toast(err.response.data.msg, {
           title: '查询时出现错误',
-          variant: 'danger',
+          variant: 'info',
           solid: true,
         });
       });
     },
 
     deleteUser() {
-      console.error(this.selected);
+      console.error('this:', this.selected);
       this.deleteUsers(this.selected).then((response) => {
         console.error(response);
         this.$bvToast.toast('删除成功', {
@@ -117,7 +158,13 @@ export default {
         this.showUsers(this.check).then((response1) => {
           this.items = response1.data.data.data;
           for (let i = 0; i < this.items.length; i += 1) {
-            this.items[i].index = (i + 1);
+            this.items[i] = {
+              index: i + 1,
+              name: this.items[i].name,
+              phone: this.items[i].phone,
+              idPass: this.items[i].IDpass,
+              _rowVariant: 'primary',
+            };
           }
         }).catch((err) => {
           this.$bvToast.toast(err.response.data.msg, {
@@ -145,10 +192,18 @@ export default {
           solid: true,
         });
         this.showUsers(this.check).then((response1) => {
+          console.error(response1.data.data.data);
           this.items = response1.data.data.data;
           for (let i = 0; i < this.items.length; i += 1) {
-            this.items[i].index = (i + 1);
+            this.items[i] = {
+              index: i + 1,
+              name: this.items[i].name,
+              phone: this.items[i].phone,
+              idPass: this.items[i].IDpass,
+              _rowVariant: 'primary',
+            };
           }
+          console.error('pass', this.items);
         }).catch((err) => {
           this.$bvToast.toast(err.response.data.msg, {
             title: '查询时出现错误',
@@ -167,3 +222,12 @@ export default {
   },
 };
 </script>
+
+<style>
+  .aquaStyle {
+    background-color: deepskyblue;
+  }
+  .greenStyle {
+    background-color: green;
+  }
+</style>
