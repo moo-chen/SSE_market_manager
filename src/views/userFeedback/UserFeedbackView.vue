@@ -63,11 +63,11 @@ export default {
 
   methods: {
     handleClick(row) {
-      window.open(row.Attachment, '_blank'); // 这里假设你的附件URL是在"Attachment"字段
+      window.open(row.Attachment, '_blank'); // 这里假设附件URL是在"Attachment"字段
     },
 
     fetchData() {
-      axios.get('http://localhost:8080/api/auth/getAllFeedback')
+      axios.get('https://localhost:8080/api/auth/getAllFeedback') // 注意改成了https这里也要跟着变
         .then((response) => {
           console.log(response.data); // 打印返回的数据
           this.tableData = response.data.data.feedbacks;
