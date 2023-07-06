@@ -32,10 +32,11 @@
             style="font-size: 18px;">
             <b-icon-envelope-open-fill class="mr-3"></b-icon-envelope-open-fill>用户反馈
           </b-list-group-item>
-            <b-list-group-item to="/checkUser" :class="{ active: $route.path === '/checkUser' }"
-            style="font-size: 18px;">
-            <b-icon-calendar2-check-fill class="mr-3"></b-icon-calendar2-check-fill>审核用户
-          </b-list-group-item>
+<!--            <b-list-group-item to="/checkUser"
+:class="{ active: $route.path === '/checkUser' }"-->
+<!--            style="font-size: 18px;">-->
+<!--            <b-icon-calendar2-check-fill class="mr-3"></b-icon-calendar2-check-fill>审核用户-->
+<!--          </b-list-group-item>-->
           <b-list-group-item to="/checkPost" :class="{ active: $route.path === '/checkPost' }"
             style="font-size: 18px; display: flex; align-items: center;">
             <b-icon-calendar2-x-fill class="mr-3"></b-icon-calendar2-x-fill>审核帖子
