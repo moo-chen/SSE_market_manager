@@ -49,6 +49,19 @@ const userModule = {
       storageService.set(storageService.ADMIN_INFO, '');
       window.location.reload();
     },
+    post(context, {
+      userTelephone, title, content, partition, photos, tagList,
+    }) {
+      return new Promise((resolve, reject) => {
+        userService.post({
+          userTelephone, title, content, partition, photos, tagList,
+        }).then((res) => {
+          resolve(res);
+        }).catch((err) => {
+          reject(err);
+        });
+      });
+    },
 
     showUsers(context, { name, phone, idPass }) {
       return new Promise((resolve, reject) => {

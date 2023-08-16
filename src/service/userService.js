@@ -49,6 +49,24 @@ const getSues = () => {
   return request.get('auth/getSues', { });
 };
 
+const post = ({
+  userTelephone,
+  title,
+  content,
+  partition,
+  photos,
+  tagList,
+}) => {
+  return request.post('auth/adminPost', {
+    userTelephone,
+    title,
+    content,
+    partition,
+    photos,
+    tagList,
+  });
+};
+
 export default {
   login,
   info,
@@ -61,4 +79,5 @@ export default {
   noViolation,
   violation,
   getSues,
+  post,
 };

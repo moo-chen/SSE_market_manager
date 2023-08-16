@@ -41,6 +41,13 @@
             style="font-size: 18px; display: flex; align-items: center;">
             <b-icon-calendar2-x-fill class="mr-3"></b-icon-calendar2-x-fill>审核帖子
           </b-list-group-item>
+          <b-list-group-item @click="showPostForm()" style="font-size: 18px;"  class="click">
+            <b-icon-pencil-fill class="mr-3"></b-icon-pencil-fill>发布通知
+          </b-list-group-item>
+          <b-modal v-model='PostFormVisible' title='通知发布' ok-only ok-title="取消发布"
+          modal-class="custom-modal">
+            <PostForm/>
+          </b-modal>
           <b-list-group-item to="/set" :class="{ active: $route.path === '/set' }"
             style="font-size: 18px; display: flex; align-items: center;" @click="toggleSettings">
             <b-icon-gear-fill class="mr-3"></b-icon-gear-fill>设置
@@ -74,19 +81,27 @@
 <script>
 
 import { mapActions } from 'vuex';
+import PostForm from '@/components/PostForm.vue';
 
 export default {
+  components: {
+    PostForm,
+  },
   data() {
     return {
       showPartitions: false,
       showSettings: false,
       showProfiles: false,
+      PostFormVisible: false,
     };
   },
   methods: {
     ...mapActions('userModule', ['logout']),
     toggleSettings() {
       this.showSettings = !this.showSettings;
+    },
+    showPostForm() {
+      this.PostFormVisible = true;
     },
   },
 };
