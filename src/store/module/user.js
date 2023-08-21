@@ -26,6 +26,7 @@ const userModule = {
   },
   actions: {
     login(context, { account, password }) {
+      console.error({ account, password });
       return new Promise((resolve, reject) => {
         userService.login({ account, password }).then((res) => {
           // 保存token
