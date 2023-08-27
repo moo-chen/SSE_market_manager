@@ -74,7 +74,7 @@ export default {
     },
 
     fetchData() {
-      axios.get('https://localhost:8080/api/auth/getAllFeedback') // 注意改成了https这里也要跟着变
+      axios.get(`${process.env.VUE_APP_BASE_URL}auth/getAllFeedback`) // 注意改成了https这里也要跟着变
         .then((response) => {
           console.log(response.data);
           const { feedbacks } = response.data.data;
