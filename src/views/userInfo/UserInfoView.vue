@@ -96,6 +96,7 @@ export default {
 
     onRowClicked(item) {
       this.selected = item;
+      // 暂时没有想到更好的方法，由于不查询不会有__ob__,这样测试后发现无法正常更改底色，所以比较投机取巧，选择重新去后端取了一次数据
       this.showUsers(this.check).then((response1) => {
         console.error(response1.data.data.data);
         this.items = response1.data.data.data;
@@ -104,6 +105,8 @@ export default {
             this.items[i] = {
               index: i + 1,
               name: this.items[i].name,
+              num: this.items[i].num,
+              email: this.items[i].email,
               phone: this.items[i].phone,
               idPass: this.items[i].IDpass,
               _rowVariant: 'info',
@@ -112,6 +115,8 @@ export default {
             this.items[i] = {
               index: i + 1,
               name: this.items[i].name,
+              num: this.items[i].num,
+              email: this.items[i].email,
               phone: this.items[i].phone,
               idPass: this.items[i].IDpass,
               _rowVariant: 'primary',
@@ -130,6 +135,8 @@ export default {
           this.items[i] = {
             index: i + 1,
             name: this.items[i].name,
+            num: this.items[i].num,
+            email: this.items[i].email,
             phone: this.items[i].phone,
             idPass: this.items[i].IDpass,
             _rowVariant: 'primary',
@@ -204,6 +211,8 @@ export default {
               this.items[i] = {
                 index: i + 1,
                 name: this.items[i].name,
+                num: this.items[i].num,
+                email: this.items[i].email,
                 phone: this.items[i].phone,
                 idPass: this.items[i].IDpass,
                 _rowVariant: 'primary',
