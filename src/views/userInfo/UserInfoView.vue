@@ -105,6 +105,8 @@ export default {
             this.items[i] = {
               index: i + 1,
               name: this.items[i].name,
+              num: this.items[i].num,
+              email: this.items[i].email,
               phone: this.items[i].phone,
               idPass: this.items[i].IDpass,
               _rowVariant: 'info',
@@ -113,6 +115,8 @@ export default {
             this.items[i] = {
               index: i + 1,
               name: this.items[i].name,
+              num: this.items[i].num,
+              email: this.items[i].email,
               phone: this.items[i].phone,
               idPass: this.items[i].IDpass,
               _rowVariant: 'primary',
@@ -131,6 +135,8 @@ export default {
           this.items[i] = {
             index: i + 1,
             name: this.items[i].name,
+            num: this.items[i].num,
+            email: this.items[i].email,
             phone: this.items[i].phone,
             idPass: this.items[i].IDpass,
             _rowVariant: 'primary',
@@ -198,6 +204,8 @@ export default {
             this.items[i] = {
               index: i + 1,
               name: this.items[i].name,
+              num: this.items[i].num,
+              email: this.items[i].email,
               phone: this.items[i].phone,
               idPass: this.items[i].IDpass,
               _rowVariant: 'primary',
