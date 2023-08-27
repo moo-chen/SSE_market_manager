@@ -12,6 +12,10 @@
     color: #fff !important;
 }
 
+.custom-modal .modal-dialog {
+    max-width: 800px;
+}
+
 .b-list-group-item {
     background-color: #FFFFFF;
     border-top: none;

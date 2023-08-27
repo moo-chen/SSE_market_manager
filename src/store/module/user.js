@@ -26,6 +26,7 @@ const userModule = {
   },
   actions: {
     login(context, { account, password }) {
+      console.error({ account, password });
       return new Promise((resolve, reject) => {
         userService.login({ account, password }).then((res) => {
           // 保存token
@@ -48,6 +49,19 @@ const userModule = {
       commit('SET_ADMININFO', '');
       storageService.set(storageService.ADMIN_INFO, '');
       window.location.reload();
+    },
+    post(context, {
+      userTelephone, title, content, partition, photos, tagList,
+    }) {
+      return new Promise((resolve, reject) => {
+        userService.post({
+          userTelephone, title, content, partition, photos, tagList,
+        }).then((res) => {
+          resolve(res);
+        }).catch((err) => {
+          reject(err);
+        });
+      });
     },
 
     showUsers(context, { name, phone, idPass }) {

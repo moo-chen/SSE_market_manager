@@ -189,43 +189,51 @@ export default {
     },
 
     passUser() {
-      console.error(this.selected);
-      this.passUsers(this.selected).then((response) => {
-        console.error(response);
-        this.$bvToast.toast('审核成功', {
-          title: '系统提醒',
-          variant: 'primary',
-          solid: true,
-        });
-        this.showUsers(this.check).then((response1) => {
-          console.error(response1.data.data.data);
-          this.items = response1.data.data.data;
-          for (let i = 0; i < this.items.length; i += 1) {
-            this.items[i] = {
-              index: i + 1,
-              name: this.items[i].name,
-              num: this.items[i].num,
-              email: this.items[i].email,
-              phone: this.items[i].phone,
-              idPass: this.items[i].IDpass,
-              _rowVariant: 'primary',
-            };
-          }
-          console.error('pass', this.items);
-        }).catch((err) => {
-          this.$bvToast.toast(err.response.data.msg, {
-            title: '查询时出现错误',
-            variant: 'danger',
-            solid: true,
-          });
-        });
-      }).catch((err) => {
-        this.$bvToast.toast(err.response.data.msg, {
+      if (this.selected.name === '') {
+        this.$bvToast.toast('您未选择用户，无法审核', {
           title: '审核错误',
           variant: 'danger',
           solid: true,
         });
-      });
+      } else {
+        console.error(this.selected);
+        this.passUsers(this.selected).then((response) => {
+          console.error(response);
+          this.$bvToast.toast('审核成功', {
+            title: '系统提醒',
+            variant: 'primary',
+            solid: true,
+          });
+          this.showUsers(this.check).then((response1) => {
+            console.error(response1.data.data.data);
+            this.items = response1.data.data.data;
+            for (let i = 0; i < this.items.length; i += 1) {
+              this.items[i] = {
+                index: i + 1,
+                name: this.items[i].name,
+                num: this.items[i].num,
+                email: this.items[i].email,
+                phone: this.items[i].phone,
+                idPass: this.items[i].IDpass,
+                _rowVariant: 'primary',
+              };
+            }
+            console.error('pass', this.items);
+          }).catch((err) => {
+            this.$bvToast.toast(err.response.data.msg, {
+              title: '查询时出现错误',
+              variant: 'danger',
+              solid: true,
+            });
+          });
+        }).catch((err) => {
+          this.$bvToast.toast(err.response.data.msg, {
+            title: '审核错误',
+            variant: 'danger',
+            solid: true,
+          });
+        });
+      }
     },
   },
 };
