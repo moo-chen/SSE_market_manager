@@ -49,6 +49,9 @@
 <script>
 import { mapActions } from 'vuex';
 
+// eslint-disable-next-line import/no-extraneous-dependencies
+import CryptoJS from 'crypto-js';
+
 export default {
   data() {
     return {
@@ -57,13 +60,24 @@ export default {
         password1: '',
         password2: '',
       },
+      key: '16bit secret key',
     };
   },
 
   methods: {
     ...mapActions('userModule', { change: 'changePassword' }),
 
+    setPassword(data, key) {
+      const cypherKey = CryptoJS.enc.Utf8.parse(key);
+      CryptoJS.pad.ZeroPadding.pad(cypherKey, 4);
+      const iv = CryptoJS.SHA256(key).toString();
+      const cfg = { iv: CryptoJS.enc.Utf8.parse(iv) };
+      return CryptoJS.AES.encrypt(data, cypherKey, cfg).toString();
+    },
+
     changePassword() {
+      this.admin.password1 = this.setPassword(this.admin.password1, this.key);
+      this.admin.password2 = this.setPassword(this.admin.password2, this.key);
       console.error(this.admin);
       this.change(this.admin).then((response) => {
         console.error(response);

@@ -58,6 +58,8 @@
 </template>
 <script>
 import { required, minLength } from 'vuelidate/lib/validators';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import CryptoJS from 'crypto-js';
 
 // import customValidator from '@/helper/validator';
 import { mapActions } from 'vuex';
@@ -69,6 +71,7 @@ export default {
         account: '',
         password: '',
       },
+      key: '16bit secret key',
     };
   },
   validations: {
@@ -91,6 +94,13 @@ export default {
       const { $dirty, $error } = this.$v.user[name];
       return $dirty ? !$error : null;
     },
+    setPassword(data, key) {
+      const cypherKey = CryptoJS.enc.Utf8.parse(key);
+      CryptoJS.pad.ZeroPadding.pad(cypherKey, 4);
+      const iv = CryptoJS.SHA256(key).toString();
+      const cfg = { iv: CryptoJS.enc.Utf8.parse(iv) };
+      return CryptoJS.AES.encrypt(data, cypherKey, cfg).toString();
+    },
     login() {
       // 验证数据
       this.$v.user.$touch();
@@ -98,6 +108,7 @@ export default {
         return;
       }
       // 请求
+      this.user.password = this.setPassword(this.user.password, this.key);
       this.adminlogin(this.user)
         .then(() => {
           this.$router.replace({ name: 'home' });
